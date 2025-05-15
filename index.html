@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Janaki Montessori School - Home</title>
+    <link rel="icon" href="https://via.placeholder.com/96x96/007bff/ffffff?Text=JMS" type="image/png" sizes="96x96">
+    <style>
+        /* Reset */
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f0f4f8;
+            color: #333;
+            overflow: hidden; /* Hide scrollbars initially for the loading message */
+        }
+        header {
+            background: #0077c8;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center; /* Vertically center items */
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center; /* Align logo and text horizontally */
+        }
+        .logo-image {
+            width: 50px; /* Adjust size as needed */
+            height: 50px;
+            margin-right: 10px; /* Space between logo and text */
+            border-radius: 5px; /* Optional: round the logo */
+            object-fit: contain; /* Make sure the whole logo fits */
+        }
+        .logo-text-container {
+            display: flex;
+            flex-direction: column; /* Stack the main logo and the address */
+            align-items: flex-start; /* Align text to the left */
+            text-align: left; /* Ensure text within is left-aligned */
+        }
+        .logo-main {
+            font-size: 2.8rem; /* Even larger font size for better visibility */
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: default;
+            color: #ff0000; /* Red color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle 3D effect */
+            margin-bottom: 2px; /* Less space between the two lines */
+        }
+        .logo-sub {
+            font-size: 1rem; /* Slightly larger font size for the address */
+            color: #000; /* Black color */
+            cursor: default;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        nav ul li a:hover {
+            background: #005fa3;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 0 20px;
+        }
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        section {
+            margin-bottom: 50px;
+        }
+        section h2 {
+            color: #0077c8;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #0077c8;
+            padding-bottom: 8px;
+            font-size: 1.8rem;
+        }
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .about-paragraph {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+        }
+        .about-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .about-container h3 {
+            color: #0077c8;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .management-team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .management-member {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+        }
+        .management-member img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .management-member h4 {
+            margin-bottom: 5px;
+            color: #0077c8;
+        }
+        .management-member p {
+            font-size: 1rem;
+            color: #555;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+            gap: 15px;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .events ul li,
+        .news p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+        }
+        .contact-info {
+            background: #0077c8;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .contact-info div {
+            flex: 1 1 250px;
+        }
+        .contact-info h3 {
+            margin-bottom: 10px;
+        }
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ffd700;
+        }
+        footer {
+            background: #004b80;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Forms */
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        form label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+        }
+        form button {
+            background: #0077c8;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        form button:hover {
+            background: #005fa3;
+        }
+
+        /* Teacher Profiles */
+        .teacher-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            gap: 20px;
+        }
+        .teacher-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
+            text-align: center;
+        }
+        .teacher-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .teacher-card h4 {
+            margin-bottom: 5px;
+            color: #0077c8;
+        }
+        .teacher-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Calendar */
+        .calendar {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .calendar h3 {
+            margin-bottom: 15px;
+            color: #0077c8;
+        }
+        .calendar table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calendar th, .calendar td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .calendar th {
+            background: #0077c8;
+            color: white;
+        }
+        .calendar td {
+            height: 80px;
+            vertical-align: top;
+            text-align: left;
+            cursor: default;
+        }
+        .calendar td.today {
+            background: #cce5ff;
+        }
+
+        /* Language toggle */
+        .lang-toggle {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .lang-toggle button {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .lang-toggle button.active,
+        .lang-toggle button:hover {
+            background: white;
+            color: #0077c8;
+        }
+
+        /* Responsive */
+        @media(max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero {
+                font-size: 1.6rem;
+                height: 280px;
+            }
+            .contact-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            header {
+                justify-content: center;
+                gap: 10px;
+            }
+            .lang-toggle {
+                margin-left: 0;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        /* Online Payment Section */
+        .online-payment {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .online-payment h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .payment-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .payment-link {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            width: 200px; /* Adjust width as needed */
+            text-align: center;
+        }
+        .esewa-link {
+            background-color: #00cc00; /* Green */
+        }
+        .khalti-link {
+            background-color: #800080; /* Purple */
+        }
+        .imepay-link {
+            background-color: #ff0000; /* Red */
+        }
+        .payment-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Loading Message */
+        #loading-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingMessage = document.getElementById('loading-message');
+            setTimeout(() => {
+                loadingMessage.style.display = 'none';
+                document.body.style.overflow = 'auto'; /* Enable scrolling after loading */
+            }, 2000); // Adjust the time (in milliseconds) as needed
+
+            const enBtn = document.getElementById('enBtn');
+            const nepBtn = document.getElementById('nepBtn');
+            const langElements = document.querySelectorAll('.lang');
+
+            function setLanguage(lang) {
+                localStorage.setItem('language', lang);
+                langElements.forEach(element => {
+                    const enText = element.dataset.en;
+                    const nepText = element.dataset.nep;
+                    if (lang === 'en' && enText) {
+                        element.textContent = enText;
+                    } else if (lang === 'nep' && nepText) {
+                        element.textContent = nepText;
+                    }
+                });
+                enBtn.classList.toggle('active', lang === 'en');
+                nepBtn.classList.toggle('active', lang === 'nep');
+            }
+
+            const currentLang = localStorage.getItem('language') || 'en';
+            setLanguage(currentLang);
+
+            enBtn.addEventListener('click', () => setLanguage('en'));
+            nepBtn.addEventListener('click', () => setLanguage('nep'));
+        });
+    </script>
+
+</head>
+<body>
+
+    <div id="loading-message" class="lang" data-en="Verifying you are human. This may take a few seconds..." data-nep="तपाईं मानव हुनुहुन्छ भनी प्रमाणित गर्दै। यसमा केही सेकेन्ड लाग्न सक्छ...">
+        Verifying you are human. This may take a few seconds...
+    </div>
+
+<header>
+    <div class="logo-container">
+        <img src="https://via.placeholder.com/50/007bff/ffffff?Text=JMS" alt="Janaki Montessori School Logo" class="logo-image">
+        <div class="logo-text-container">
+            <div class="logo-main">Janaki Montessori School</div>
+            <div class="logo-sub">Itahari-17, Pakali, Sunsari</div>
+        </div></div>
+    <nav>
+        <ul>
+            <li><a href="#about" class="lang" data-en="About Us" data-nep="हाम्रोबारे">About Us</a></li>
+            <li><a href="#management" class="lang" data-en="Management Team" data-nep="व्यवस्थापन टोली">Management Team</a></li>
+            <li><a href="#gallery" class="lang" data-en="Gallery" data-nep="ग्यालरी">Gallery</a></li>
+            <li><a href="#events" class="lang" data-en="Events/News" data-nep="कार्यक्रम/समाचार">Events/News</a></li>
+            <li><a href="#admission" class="lang" data-en="Admission Form" data-nep="भर्ना फारम">Admission Form</a></li>
+            <li><a href="#teachers" class="lang" data-en="Teachers" data-nep="शिक्षकहरू">Teachers</a></li>
+            <li><a href="#calendar" class="lang" data-en="Calendar" data-nep="क्यालेन्डर">Calendar</a></li>
+            <li><a href="#contact" class="lang" data-en="Contact" data-nep="सम्पर्क">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="lang-toggle">
+        <button id="enBtn" class="active">English</button>
+        <button id="nepBtn">नेपाली</button>
+    </div>
+</header>
+
+<section class="hero lang" data-en="Welcome to Janaki Montessori School" data-nep="जानकी मोन्टेसोरी स्कुलमा स्वागत छ">
+    Welcome to Janaki Montessori School
+</section>
+
+<main>
+
+    <section id="about" class="about">
+        <h2 class="lang" data-en="About Us" data-nep="हाम्रोबारे">About Us</h2>
+        <div class="about-content">
+            <div class="about-container">
+                <h3 class="lang" data-en="Our Philosophy" data-nep="हाम्रो दर्शन">Our Philosophy</h3>
+                <p class="about-paragraph lang" data-en="Janaki Montessori School is a child-centered, progressive educational institution located in Itahari-17, Pakali, Sunsari. Established with the aim of nurturing young minds in a loving and inspiring environment, the school follows Montessori principles that promote independence, creativity, and holistic development."
+                    data-nep="जानकी मोन्टेसोरी स्कुल इटहरी-१७, पकली, सुनसरी मा अवस्थित बालकेंद्रीक, प्रगतिशील शैक्षिक संस्था हो। हाम्रो उद्देश्य प्रेमपूर्ण र प्रेरणादायक वातावरणमा बालबालिकाको विकास गर्नु हो। हामी मोन्टेसोरी विधि प्रयोग गरी स्वतन्त्रता, सिर्जनशीलता र समग्र विकासमा जोड दिन्छौं।">
+                    Janaki Montessori School is a child-centered, progressive educational institution located in Itahari-17, Pakali, Sunsari.
+                    Established with the aim of nurturing young minds in a loving and inspiring environment, the school follows Montessori principles that promote independence, creativity, and holistic development.
+                </p>
+            </div>
+            <div class="about-container">
+                <h3 class="lang" data-en="Our Approach" data-nep="हाम्रो दृष्टिकोण">Our Approach</h3>
+                <p class="about-paragraph lang" data-en="We provide a safe, clean, and joyful learning space for children to explore, discover, and grow intellectually, emotionally, and socially. Our dedicated team of trained educators ensures that each child receives personalized attention and encouragement in their learning journey."
+                    data-nep="यहाँ बालबालिकालाई सुरक्षित, सफा र रमाइलो सिकाइको स्थान प्रदान गरिन्छ। हाम्रा प्रशिक्षित शिक्षकहरूले प्रत्येक बच्चालाई व्यक्तिगत ध्यान र प्रोत्साहन दिन्छन्।">
+                    We provide a safe, clean, and joyful learning space for children to explore, discover, and grow intellectually, emotionally, and socially.
+                    Our dedicated team of trained educators ensures that each child receives personalized attention and encouragement in their learning journey.
+                </p>
+            </div>
+            <div class="about-container">
+                 <h3 class="lang" data-en="Message from the Principal" data-nep="प्रधानाध्यापकको सन्देश">Message from the Principal</h3>
+                <p class="about-paragraph lang" data-en="Dear Parents and Guardians,<br>Welcome to Janaki Montessori School!<br>We believe every child is special and should learn in a safe and caring environment. Using the Montessori method, we help children learn by doing, explore their interests, and grow in every way. Our kind and experienced teachers are here to guide and support your child.<br>Thank you for trusting us with your child’s learning.<br>Sincerely,<br><br>Principal Mamata Sinjali"
+                    data-nep="आदरणीय अभिभावकज्यूहरू,<br>जानकी मन्टेसोरी स्कुलमा तपाईंलाई हार्दिक स्वागत छ।<br>हामी विश्वास गर्छौं कि प्रत्येक बच्चा विशेष हुन्छ र उसले सुरक्षित र मायालु वातावरणमा सिक्न पाउनुपर्छ। हामी मन्टेसोरी पद्धतिमार्फत बच्चाहरूलाई अभ्यास गरेर सिक्न, आफ्ना रुचिहरू पहिचान गर्न र सम्पूर्ण रूपमा विकास गर्न प्रेरित गर्छौं। हाम्रा अनुभवी र सहयोगी शिक्षकहरू तपाईंको बच्चाको यात्रा सफल बनाउन सधैं साथ रहनेछन्।<br>तपाईंले आफ्नो बच्चाको शिक्षामा हामीमाथि विश्वास गर्नुभएकोमा धन्यवाद।<br>सादर,<br><br>प्रधानाध्यापक ममता मगर">
+                    Dear Parents and Guardians,<br>
+                    Welcome to Janaki Montessori School!<br>
+                    We believe every child is special and should learn in a safe and caring environment. Using the Montessori method, we help children learn by doing, explore their interests, and grow in every way. Our kind and experienced teachers are here to guide and support your child.<br>
+                    Thank you for trusting us with your child’s learning.<br>
+                    Sincerely,<br><br>
+                    Principal Mamata Sinjali
+                </p>
+            </div>
+            <div class="about-container">
+                 <h3 class="lang" data-en="Our Commitment" data-nep="हाम्रो प्रतिबद्धता">Our Commitment</h3>
+                <p class="about-paragraph lang" data-en="To become a leading early childhood educational institution in Nepal by fostering curiosity, independence, and a lifelong love for learning in every child."
+                    data-nep="प्रत्येक बालबालिकामा जिज्ञासा, स्वतन्त्रता र दीर्घकालीन सिकाइ प्रेम विकास गराउँदै नेपालको अग्रणी प्रारम्भिक बाल शिक्षा संस्था बन्नु।">
+                    To become a leading early childhood educational institution in Nepal by fostering curiosity, independence, and a lifelong love for learning in every child.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="management" class="management-team">
+        <h2 class="lang" data-en="Management Team" data-nep="व्यवस्थापन टोली">Management Team</h2>
+        <div class="management-member">
+            <img src="" alt="Management Team" />
+            <h4 class="lang" data-en="Ram Bahadur Thapa" data-nep="राम बहादुर थापा">Ram Bahadur Thapa</h4>
+            <p class="lang" data-en="Chairman" data-nep="अध्यक्ष">Chairman</p>
+        </div>
+        <div class="management-member">
+            <img src="" alt="Management Team" />
+            <h4 class="lang" data-en="Shyam Kumari Rai" data-nep="श्याम कुमारी राई">Shyam Kumari Rai</h4>
+            <p class="lang" data-en="Director" data-nep="निर्देशक">Director</p>
+        </div>
+         <div class="management-member">
+            <img src="" alt="Management Team" />
+            <h4 class="lang" data-en="Kishor Kumar Yadav" data-nep="किशोर कुमार यादव">Kishor Kumar Yadav</h4>
+            <p class="lang" data-en="Finance Head" data-nep="वित्त प्रमुख">Finance Head</p>
+        </div>
+        <div class="management-member">
+            <img src="" alt="Management Team" />
+            <h4 class="lang" data-en="Sunita Devi Chaudhari" data-nep="सुनिता देवी चौधरी">Sunita Devi Chaudhari</h4>
+            <p class="lang" data-en="Academic Coordinator" data-nep="शैक्षिक संयोजक">Academic Coordinator</p>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <h2 class="lang" data-en="Gallery" data-nep="ग्यालरी">Gallery</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1509099836639-18ba1d9e8aa0?auto=format&fit=crop&w=500&q=60" alt="Kids learning" />
+            <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=500&q=60" alt="Children playing" />
+            <img src="https://images.unsplash.com/photo-1527261834078-9f3a6a1f3b2a?auto=format&fit=crop&w=500&q=60" alt="Classroom activity" />
+            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=60" alt="Teacher with kids" />
+        </div>
+    </section>
+
+    <section id="events" class="events">
+        <h2 class="lang" data-en="Events and News" data-nep="कार्यक्रम र समाचार">Events and News</h2>
+        <ul>
+            <li class="lang" data-en="Annual Sports Day on 25th June 2025" data-nep="वार्षिक खेलकुद दिवस - २५ जून २०२५">Annual Sports Day on 25th June 2025</li>
+            <li class="lang" data-en="Summer Camp registration starts from 1st July" data-nep="समर क्याम्प दर्ता सुरु १ जुलाई देखि">Summer Camp registration starts from 1st July</li>
+            <li class="lang" data-en="New library books arrival" data-nep="नयाँ पुस्तकालय पुस्तकहरू आएको छ">New library books arrival</li>
+        </ul>
+    </section>
+
+    <section id="admission" class="admission">
+        <h2 class="lang" data-en="Admission Form" data-nep="भर्ना फारम">Admission Form</h2>
+        <form id="admissionForm">
+            <label class="lang" data-en="Full Name" data-nep="पूरा नाम" for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required />
+
+            <label class="lang" data-en="Date of Birth" data-nep="जन्म मिति" for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required />
+
+            <label class="lang" data-en="Parent/Guardian Name" data-nep="अभिभावकको नाम" for="parentname">Parent/Guardian Name</label>
+            <input type="text" id="parentname" name="parentname" required />
+
+            <label class="lang" data-en="Class Applying For" data-nep="भर्ना हुने कक्षा" for="classapplying">Class Applying For</label>
+            <select id="classapplying" name="classapplying" required>
+                <option value="" disabled selected>Select Class</option>
+                <option value="LKG">LKG</option>
+                <option value="UKG">UKG</option>
+                <option value="Grade 1">Grade 1</option>
+                <option value="Grade 2">Grade 2</option>
+                <option value="Grade 3">Grade 3</option>
+            </select>
+
+            <label class="lang" data-en="Contact Number" data-nep="सम्पर्क नम्बर" for="contactnum">Contact Number</label>
+            <input type="tel" id="contactnum" name="contactnum" pattern="[0-9]{10}" placeholder="Ex: 9812345678" required />
+
+            <button type="submit" class="lang" data-en="Submit" data-nep="पेश गर्नुहोस्">Submit</button>
+        </form>
+    </section>
+
+    <section class="online-payment">
+        <h2 class="lang" data-en="Online Payment" data-nep="अनलाइन भुक्तानी">Online Payment</h2>
+        <p class="lang" data-en="For online payment of fees, please use the following direct links:" data-nep="शुल्कको अनलाइन भुक्तानीको लागि, कृपया निम्न प्रत्यक्ष लिङ्कहरू प्रयोग गर्नुहोस्:"></p>
+        <div class="payment-links">
+            <a href="esewa://wallet?refId=YOUR_ESEWA_REF_ID" class="payment-link esewa-link" target="_blank">eSewa</a>
+            <a href="khalti://wallet/main?refId=YOUR_KHALTI_REF_ID" class="payment-link khalti-link" target="_blank">Khalti</a>
+            <a href="imepay://payment?refId=YOUR_IME_PAY_REF_ID" class="payment-link imepay-link" target="_blank">IME Pay</a>
+        </div>
+        <p class="lang" data-en="Note: Make sure you have the respective apps installed on your device." data-nep="नोट: तपाईंको उपकरणमा सम्बन्धित एपहरू स्थापना भएको हुनुपर्छ।"></p>
+    </section>
+
+    <section id="teachers" class="teachers">
+        <h2 class="lang" data-en="Teachers and Staff" data-nep="शिक्षक र कर्मचारीहरू">Teachers and Staff</h2>
+        <div class="teacher-list">
+            <div class="teacher-card">
+                <img src="" alt="Teacher 1" />
+                <h4 class="lang" data-en="Teacher One" data-nep="शिक्षक एक">Teacher One</h4>
+                <p class="lang" data-en="Subject One" data-nep="विषय एक">Subject One</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 2" />
+                <h4 class="lang" data-en="Teacher Two" data-nep="शिक्षक दुई">Teacher Two</h4>
+                <p class="lang" data-en="Subject Two" data-nep="विषय दुई">Subject Two</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 3" />
+                <h4 class="lang" data-en="Teacher Three" data-nep="शिक्षक तीन">Teacher Three</h4>
+                <p class="lang" data-en="Subject Three" data-nep="विषय तीन">Subject Three</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 4" />
+                <h4 class="lang" data-en="Teacher Four" data-nep="शिक्षक चार">Teacher Four</h4>
+                <p class="lang" data-en="Subject Four" data-nep="विषय चार">Subject Four</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 5" />
+                <h4 class="lang" data-en="Teacher Five" data-nep="शिक्षक पाँच">Teacher Five</h4>
+                <p class="lang" data-en="Subject Five" data-nep="विषय पाँच">Subject Five</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 6" />
+                <h4 class="lang" data-en="Teacher Six" data-nep="शिक्षक छ">Teacher Six</h4>
+                <p class="lang" data-en="Subject Six" data-nep="विषय छ">Subject Six</p>
+            </div><div class="teacher-card">
+                <img src="" alt="Teacher 7" />
+                <h4 class="lang" data-en="Teacher Seven" data-nep="शिक्षक सात">Teacher Seven</h4>
+                <p class="lang" data-en="Subject Seven" data-nep="विषय सात">Subject Seven</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 8" />
+                <h4 class="lang" data-en="Teacher Eight" data-nep="शिक्षक आठ">Teacher Eight</h4>
+                <p class="lang" data-en="Subject Eight" data-nep="विषय आठ">Subject Eight</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 9" />
+                <h4 class="lang" data-en="Teacher Nine" data-nep="शिक्षक नौ">Teacher Nine</h4>
+                <p class="lang" data-en="Subject Nine" data-nep="विषय नौ">Subject Nine</p>
+            </div>
+            <div class="teacher-card">
+                <img src="" alt="Teacher 10" />
+                <h4 class="lang" data-en="Teacher Ten" data-nep="शिक्षक दस">Teacher Ten</h4>
+                <p class="lang" data-en="Subject Ten" data-nep="विषय दस">Subject Ten</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="calendar" class="calendar">
+        <h2 class="lang" data-en="School Calendar" data-nep="विद्यालय क्यालेन्डर">School Calendar</h2>
+        <div aria-label="School events calendar">
+            <h3 class="lang" data-en="June 2025" data-nep="जुन २०२५">June 2025</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="lang" data-en="Sun" data-nep="आइत">Sun</th>
+                        <th class="lang" data-en="Mon" data-nep="सोम">Mon</th>
+                        <th class="lang" data-en="Tue" data-nep="मंगल">Tue</th>
+                        <th class="lang" data-en="Wed" data-nep="बुध">Wed</th>
+                        <th class="lang" data-en="Thu" data-nep="बिही">Thu</th>
+                        <th class="lang" data-en="Fri" data-nep="शुक्र">Fri</th>
+                        <th class="lang" data-en="Sat" data-nep="शनि">Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td>
+                    </tr>
+                    <tr>
+                        <td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td>
+                    </tr>
+                    <tr>
+                        <td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td>
+                    </tr>
+                    <tr>
+                        <td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+                    </tr>
+                    <tr>
+                        <td>25<br><strong class="lang" data-en="Annual Sports Day" data-nep="वार्षिक खेलकुद दिवस">Annual Sports Day</strong></td>
+                        <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="lang" data-en="Contact Form" data-nep="सम्पर्क फारम">Contact Form</h2>
+        <form id="contactForm">
+            <label class="lang" data-en="Your Name" data-nep="तपाईंको नाम" for="contactName">Your Name</label>
+            <input type="text" id="contactName" name="contactName" required />
+
+            <label class="lang" data-en="Your Email" data-nep="तपाईंको इमेल" for="contactEmail">Your Email</label>
+            <input type="email" id="contactEmail" name="contactEmail" required />
+
+            <label class="lang" data-en="Message" data-nep="सन्देश" for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+
+            <button type="submit" class="lang" data-en="Send Message" data-nep="सन्देश पठाउनुहोस्">Send Message</button>
+        </form>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Janaki Montessori School. All rights reserved.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const langToggle = document.querySelector('.lang-toggle');
+        const enBtn = document.getElementById('enBtn');
+        const nepBtn = document.getElementById('nepBtn');
+        const langElements = document.querySelectorAll('.lang');
+
+        function setLanguage(lang) {
+            localStorage.setItem('language', lang);
+            langElements.forEach(element => {
+                const enText = element.dataset.en;
+                const nepText = element.dataset.nep;
+                if (lang === 'en' && enText) {
+                    element.textContent = enText;
+                } else if (lang === 'nep' && nepText) {
+                    element.textContent = nepText;
+                }
+            });
+            enBtn.classList.toggle('active', lang === 'en');
+            nepBtn.classList.toggle('active', lang === 'nep');
+        }
+
+        const currentLang = localStorage.getItem('language') || 'en';
+        setLanguage(currentLang);
+
+        enBtn.addEventListener('click', () => setLanguage('en'));
+        nepBtn.addEventListener('click', () => setLanguage('nep'));
+
+        const loadingMessage = document.getElementById('loading-message');
+        setTimeout(() => {
+            loadingMessage.style.display = 'none';
+            document.body.style.overflow = 'auto'; /* Enable scrolling after loading */
+        }, 2000); // Adjust the time (in milliseconds) as needed
+    });
+</script>
+
+</body>
+</html>
